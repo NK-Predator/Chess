@@ -1,3 +1,11 @@
+#include <iostream>
+#include <string>
+#include <locale.h>
+#include <list>
+#include <stdlib.h>
+#include <vector>
+#include <time.h>
 
-
-//hola
+void printtaulell() {
+	std::cout
+}
