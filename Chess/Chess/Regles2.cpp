@@ -74,4 +74,12 @@ bool estaEnJaque(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador j) {
     return false;
 }
 
+void copiarTauler(char origen[MIDA_TAULER][MIDA_TAULER], char desti[MIDA_TAULER][MIDA_TAULER]) {
+    int fila, columna;
+    for (fila = 0; fila < MIDA_TAULER; fila = fila + 1) {
+        for (columna = 0; columna < MIDA_TAULER; columna = columna + 1) {
+            desti[fila][columna] = origen[fila][columna];
+        }
+    }
+}
 //Falta continuar, pensant com fer aquesta merda
