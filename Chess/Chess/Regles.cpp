@@ -51,3 +51,20 @@ char tipusPeca(char c) {
     }
     return c;
 }
+bool movimentValidTauler(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador j, int filaOrigen, int colOrigen, int filaDesti, int colDesti) {
+    char origen, desti, tipus;
+    int distaciaFila, distanciaCol, direccioMoviment, filaInicialPeo, filaIntermediaPeo, distanciaAbsFila, distanciaAbsColumna, pasVertical, pasHoritzontal, filaActual, columnaActual;
+
+    if (dintreTauler(filaOrigen, colOrigen) == false) return false;
+    if (dintreTauler(filaDesti, colDesti) == false) return false;
+
+    origen = tauler[filaOrigen][colOrigen];
+    desti = tauler[filaDesti][colDesti];
+
+    if (esBuida(origen) == true) return false;
+    if (pecaDelJugador(origen, j) == false) return false;
+    if (pecaDelJugador(desti, j) == true) return false;
+
+    distaciaFila = filaDesti - filaOrigen;
+    distanciaCol = colDesti - colOrigen;
+    tipus = tipusPeca(origen);
