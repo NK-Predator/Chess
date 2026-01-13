@@ -68,6 +68,7 @@ bool movimentValidTauler(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador j, int f
     distaciaFila = filaDesti - filaOrigen;
     distanciaCol = colDesti - colOrigen;
     tipus = tipusPeca(origen);
+    
     // PEÓ
     if (tipus == PEO_B) {
         if (j.color == BLANC) {
