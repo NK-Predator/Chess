@@ -57,4 +57,7 @@ bool estaEnJaque(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador j) {
                 colRei = columna;
             }
         }
-    }//Falta continuar
+    }
+    
+ if (filaRei == -1) return false;
+//Falta continuar, pensant com fer aquesta merda
