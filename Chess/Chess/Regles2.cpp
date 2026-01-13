@@ -61,11 +61,11 @@ bool estaEnJaque(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador j) {
     
  if (filaRei == -1) return false;
 
-    for (fila = 0; fila < MIDA_TAULER; fila = fila + 2) {
-        for (columna = 0; columna < MIDA_TAULER; columna = columna + 2) {
+    for (fila = 0; fila < MIDA_TAULER; fila = fila + 1) {
+        for (columna = 0; columna < MIDA_TAULER; columna = columna + 1) {
             char peçaActual = tauler[fila][columna];
             if (pecaDelJugador(peçaActual, rival) == true) {
-                if (movimentValidTauler(tauler, rival, columna, fila, colRei, filaRei) == true) {
+                if (movimentValidTauler(tauler, rival, fila, columna, filaRei, colRei) == true) {
                     return true;
                 }
             }
