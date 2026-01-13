@@ -68,7 +68,7 @@ bool movimentValidTauler(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador j, int f
     distaciaFila = filaDesti - filaOrigen;
     distanciaCol = colDesti - colOrigen;
     tipus = tipusPeca(origen);
-    
+
     // PEÓ
     if (tipus == PEO_B) {
         if (j.color == BLANC) {
@@ -120,4 +120,42 @@ bool movimentValidTauler(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador j, int f
             }
         }
         return false;
+    }
+    
+  // PECES AMB CAMÍ (TORRE, ALFIL, REINA)
+    if (tipus == TORRE_B || tipus == ALFIL_B || tipus == REINA_B) {
+        distanciaAbsFila = distaciaFila; if (distanciaAbsFila < 0) distanciaAbsFila = -distanciaAbsFila;
+        distanciaAbsColumna = distanciaCol; if (distanciaAbsColumna < 0) distanciaAbsColumna = -distanciaAbsColumna;
+
+        bool recta = false;
+        if (filaOrigen == filaDesti) recta = true;
+        if (colOrigen == colDesti) recta = true;
+
+        bool diagonal = false;
+        if (distanciaAbsFila == distanciaAbsColumna) diagonal = true;
+
+        if (tipus == TORRE_B) { if (recta == false) return false; }
+        if (tipus == ALFIL_B) { if (diagonal == false) return false; }
+        if (tipus == REINA_B) {
+            if (recta == false) {
+                if (diagonal == false) return false;
+            }
+        }
+
+        pasVertical = 0;
+        if (filaDesti > filaOrigen) pasVertical = 1;
+        else if (filaDesti < filaOrigen) pasVertical = -1;
+
+        pasHoritzontal = 0;
+        if (colDesti > colOrigen) pasHoritzontal = 1;
+        else if (colDesti < colOrigen) pasHoritzontal = -1;
+
+        filaActual = filaOrigen + pasVertical;
+        columnaActual = colOrigen + pasHoritzontal;
+        while (filaActual != filaDesti || columnaActual != colDesti) {
+            if (esBuida(tauler[filaActual][columnaActual]) == false) return false;
+            filaActual = filaActual + pasVertical;
+            columnaActual = columnaActual + pasHoritzontal;
+        }
+        return true;
     }
