@@ -68,3 +68,55 @@ bool movimentValidTauler(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador j, int f
     distaciaFila = filaDesti - filaOrigen;
     distanciaCol = colDesti - colOrigen;
     tipus = tipusPeca(origen);
+    // PEÓ
+    if (tipus == PEO_B) {
+        if (j.color == BLANC) {
+            direccioMoviment = -1;
+            filaInicialPeo = 6;
+        }
+        else {
+            direccioMoviment = 1;
+            filaInicialPeo = 1;
+        }
+
+        // Moviment normal 1 casella
+        if (distanciaCol == 0) {
+            if (distaciaFila == direccioMoviment) {
+                if (esBuida(desti) == true) {
+                    return true;
+                }
+            }
+        }
+
+        // Moviment inicial 2 caselles
+        if (distanciaCol == 0) {
+            int dSaltDoble = 2 * direccioMoviment;
+            if (distaciaFila == dSaltDoble) {
+                if (filaOrigen == filaInicialPeo) {
+                    filaIntermediaPeo = filaOrigen + direccioMoviment;
+                    if (esBuida(tauler[filaIntermediaPeo][colOrigen]) == true) {
+                        if (esBuida(desti) == true) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Captura
+        bool capturaDreta = (distanciaCol == 1);
+        bool capturaEsquerra = (distanciaCol == -1);
+        if (capturaDreta == true || capturaEsquerra == true) {
+            if (distaciaFila == direccioMoviment) {
+                if (esBuida(desti) == false) {
+                    if (j.color == BLANC) {
+                        if (esNegra(desti) == true) return true;
+                    }
+                    else {
+                        if (esBlanca(desti) == true) return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
