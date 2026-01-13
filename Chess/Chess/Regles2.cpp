@@ -60,4 +60,9 @@ bool estaEnJaque(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador j) {
     }
     
  if (filaRei == -1) return false;
+
+     for (fila = 0; fila < MIDA_TAULER; fila = fila + 1) {
+        for (columna = 0; columna < MIDA_TAULER; columna = columna + 1) {
+        }
+    }
 //Falta continuar, pensant com fer aquesta merda
