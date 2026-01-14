@@ -1,6 +1,7 @@
 #include "Regles.hpp"
 #include <iostream>
 
+//Es comprova si la casella està buida.
 bool esBuida(char p) {
     if (p == CASELLA_BUIDA) {
         return true;
@@ -8,6 +9,7 @@ bool esBuida(char p) {
     return false;
 }
 
+//Es comprova si la casella és blanca.
 bool esBlanca(char p) {
     if (p >= 'A') {
         if (p <= 'Z') {
@@ -17,6 +19,7 @@ bool esBlanca(char p) {
     return false;
 }
 
+//Es comprova si la casella és negre.
 bool esNegra(char p) {
     if (p >= 'a') {
         if (p <= 'z') {
@@ -26,6 +29,7 @@ bool esNegra(char p) {
     return false;
 }
 
+//Es comprova si la posició es troba dintre del tauler.
 bool dintreTauler(int fila, int col) {
     if (fila < 0) return false;
     if (fila >= MIDA_TAULER) return false;
@@ -34,6 +38,7 @@ bool dintreTauler(int fila, int col) {
     return true;
 }
 
+//Comprova si c ccorrespon a una peça del jugador blanc i sino es negre.
 bool pecaDelJugador(char c, Jugador j) {
     if (j.color == BLANC) {
         return esBlanca(c);
@@ -43,6 +48,7 @@ bool pecaDelJugador(char c, Jugador j) {
     }
 }
 
+//Converteix les peces en minúscula a majúscula per obtenir només el tipus de peça independentment del color.
 char tipusPeca(char c) {
     if (c >= 'a') {
         if (c <= 'z') {
@@ -51,6 +57,9 @@ char tipusPeca(char c) {
     }
     return c;
 }
+
+//Aquesta funció valida el moviment de una peça de un lloc a un altre tenint en compte quin tipus de figura és, el color de la peça,
+// límits de tauler i el camí lliure per les peçes de torre, alfil i reinaS. 
 bool movimentValidTauler(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador j, int filaOrigen, int colOrigen, int filaDesti, int colDesti) {
     char origen, desti, tipus;
     int distaciaFila, distanciaCol, direccioMoviment, filaInicialPeo, filaIntermediaPeo, distanciaAbsFila, distanciaAbsColumna, pasVertical, pasHoritzontal, filaActual, columnaActual;
@@ -179,6 +188,7 @@ bool movimentValidTauler(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador j, int f
     return false;
 }
 
+//S'actulitza el tauler en funció del moviment de la peça de origen a destí deixant l'origen com a casella buida.
 void mourePecaTauler(char tauler[MIDA_TAULER][MIDA_TAULER], int filaOrigen, int colOrigen, int filaDesti, int colDesti) {
     tauler[filaDesti][colDesti] = tauler[filaOrigen][colOrigen];
     tauler[filaOrigen][colOrigen] = CASELLA_BUIDA;

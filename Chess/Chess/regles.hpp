@@ -1,6 +1,7 @@
 #pragma once
 #include "Definicions.hpp"
 
+//Declaració de totes les funcions 
 bool esBuida(char p);
 bool esBlanca(char p);
 bool esNegra(char p);
