@@ -3,8 +3,12 @@
 #include "Regles2.hpp"
 #include <iostream>
 #include <string>
+#include <locale.h>
 
 void jugarPartida() {
+
+    setlocale(LC_ALL, "");
+
     char tauler[MIDA_TAULER][MIDA_TAULER];
     Jugador jugadorBlanc, jugadorNegre, jugadorActual, jugadorDefensor;
     bool esTornBlancs = true;

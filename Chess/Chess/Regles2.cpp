@@ -2,6 +2,7 @@
 #include "Regles.hpp"
 #include <iostream>
 
+
 void promocionarSiCal(char tauler[MIDA_TAULER][MIDA_TAULER]) {
     int c;
     for (c = 0; c < MIDA_TAULER; c = c + 1) {
