@@ -93,15 +93,22 @@ bool esJaqueMate(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador defensor) {
     char copia[MIDA_TAULER][MIDA_TAULER];
     int filOrg, colOrg, filDes, colDes;
 
+    // Busquem totes les peces del defensor
     for (filOrg = 0; filOrg < MIDA_TAULER; filOrg = filOrg + 1) {
         for (colOrg = 0; colOrg < MIDA_TAULER; colOrg = colOrg + 1) {
             char peçaActual = tauler[filOrg][colOrg];
             if (pecaDelJugador(peçaActual, defensor) == true) {
+
+                // Per cada peça trobada provem a mourela a qualsevol casella del tauler
                 for (filDes = 0; filDes < MIDA_TAULER; filDes = filDes + 1) {
                     for (colDes = 0; colDes < MIDA_TAULER; colDes = colDes + 1) {
+
+                        // Si el moviment és legal
                         if (movimentValidTauler(tauler, defensor, filOrg, colOrg, filDes, colDes) == true) {
                             copiarTauler(tauler, copia);
                             mourePecaTauler(copia, filOrg, colOrg, filDes, colDes);
+
+                            // Si després de moure el Rei ja no està en jaque, no es jaque mate ja que hi ha escapatoria
                             if (estaEnJaque(copia, defensor) == false) {
                                 return false;
                             }
