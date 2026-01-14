@@ -1,4 +1,4 @@
-#include "Tauler.hpp"
+#include "Taulell.hpp"
 #include "Regles.hpp"
 #include "Regles2.hpp"
 #include <iostream>
@@ -92,6 +92,17 @@ void jugarPartida() {
         }
 
         promocionarSiCal(tauler);
+
+      if (esJaqueMate(tauler, jugadorDefensor)) {
+          imprimirTauler(tauler);
+          std::cout << "ESCAC I MAT! Guanya " << jugadorActual.nom << "!" << std::endl;
+          break;
+      }
+
+      if (!existeixRei(tauler, jugadorDefensor)) {
+          std::cout << "El rei de " << jugadorDefensor.nom << " ha estat capturat!" << std::endl;
+          break;
+      }
 
 
         esTornBlancs = !esTornBlancs;

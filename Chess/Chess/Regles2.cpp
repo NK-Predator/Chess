@@ -82,4 +82,33 @@ void copiarTauler(char origen[MIDA_TAULER][MIDA_TAULER], char desti[MIDA_TAULER]
         }
     }
 }
-//Falta continuar, pensant com fer aquesta merda
+
+
+bool esJaqueMate(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador defensor) {
+    if (estaEnJaque(tauler, defensor) == false) {
+        return false;
+    }
+
+    char copia[MIDA_TAULER][MIDA_TAULER];
+    int filOrg, colOrg, filDes, colDes;
+
+    for (filOrg = 0; filOrg < MIDA_TAULER; filOrg = filOrg + 1) {
+        for (colOrg = 0; colOrg < MIDA_TAULER; colOrg = colOrg + 1) {
+            char peçaActual = tauler[filOrg][colOrg];
+            if (pecaDelJugador(peçaActual, defensor) == true) {
+                for (filDes = 0; filDes < MIDA_TAULER; filDes = filDes + 1) {
+                    for (colDes = 0; colDes < MIDA_TAULER; colDes = colDes + 1) {
+                        if (movimentValidTauler(tauler, defensor, filOrg, colOrg, filDes, colDes) == true) {
+                            copiarTauler(tauler, copia);
+                            mourePecaTauler(copia, filOrg, colOrg, filDes, colDes);
+                            if (estaEnJaque(copia, defensor) == false) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return true;
+}
