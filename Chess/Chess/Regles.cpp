@@ -159,3 +159,27 @@ bool movimentValidTauler(char tauler[MIDA_TAULER][MIDA_TAULER], Jugador j, int f
         }
         return true;
     }
+
+    if (tipus == CAVALL_B) {
+        distanciaAbsFila = distaciaFila; if (distanciaAbsFila < 0) distanciaAbsFila = -distanciaAbsFila;
+        distanciaAbsColumna = distanciaCol; if (distanciaAbsColumna < 0) distanciaAbsColumna = -distanciaAbsColumna;
+        int producte = distanciaAbsFila * distanciaAbsColumna;
+        if (producte == 2) return true;
+        return false;
+    }
+
+    if (tipus == REI_B) {
+        distanciaAbsFila = distaciaFila; if (distanciaAbsFila < 0) distanciaAbsFila = -distanciaAbsFila;
+        distanciaAbsColumna = distanciaCol; if (distanciaAbsColumna < 0) distanciaAbsColumna = -distanciaAbsColumna;
+        if (distanciaAbsFila <= 1) {
+            if (distanciaAbsColumna <= 1) return true;
+        }
+        return false;
+    }
+    return false;
+}
+
+void mourePecaTauler(char tauler[MIDA_TAULER][MIDA_TAULER], int filaOrigen, int colOrigen, int filaDesti, int colDesti) {
+    tauler[filaDesti][colDesti] = tauler[filaOrigen][colOrigen];
+    tauler[filaOrigen][colOrigen] = CASELLA_BUIDA;
+}
